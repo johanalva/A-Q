@@ -21,6 +21,9 @@ myShiny <- shinyServer(function(input, output, session) {
     observeEvent(input$do, {
         
         ae <- "https://trello.com/b/i4u41Lhr/analytics-sdr.json"
+        key <- 'd00e8afb53f716936477840488ad72f5'
+        secret <- '7e46b4cff5903e5c74d88cc26fa262a1b347edacfabe7b95157f6ca52c67aa7f'
+        
         key <- input$key
         secret <- input$secret
         
@@ -104,14 +107,16 @@ myShiny <- shinyServer(function(input, output, session) {
         cardsDisplay$Red <- "n"
         cardsDisplay$Overtime <- "n"
         cardsDisplay$Re_Work <- "n"
-        cardsDisplay$Projects <- "n"
         cardsDisplay$Task <- "n"
         cardsDisplay$Highlight <- "n"
         cardsDisplay$Lowlight <- "n"
         cardsDisplay$Blocker <- "n"
         cardsDisplay$HighImportance <- "n"
         cardsDisplay$Automation <- "n"
-        cardsDisplay$BAU <- "n"
+        cardsDisplay$Project_P1 <- "n"
+        cardsDisplay$Project_P2 <- "n"
+        cardsDisplay$Project_P3 <- "n"
+        cardsDisplay$Project_P4 <- "n"
         
         metricsEvaluate <- function(x){
             if(any(unlist(cardsDisplay$labels[[i]][3]) %in% x)){
@@ -128,14 +133,16 @@ myShiny <- shinyServer(function(input, output, session) {
                 cardsDisplay$Red[i] <- metricsEvaluate("Red")
                 cardsDisplay$Overtime[i] <- metricsEvaluate("Overtime")
                 cardsDisplay$Re_Work[i] <- metricsEvaluate("Re-Work")
-                cardsDisplay$Projects[i] <- metricsEvaluate("Projects")
                 cardsDisplay$Task[i] <- metricsEvaluate("Task")
                 cardsDisplay$Highlight[i] <- metricsEvaluate("Highlight")
                 cardsDisplay$Lowlight[i] <- metricsEvaluate("Lowlight")
                 cardsDisplay$Blocker[i] <- metricsEvaluate("Blocker")
                 cardsDisplay$HighImportance[i] <- metricsEvaluate("High Importance")
                 cardsDisplay$Automation[i] <- metricsEvaluate("Automation")
-                cardsDisplay$BAU[i] <- metricsEvaluate("BAU")
+                cardsDisplay$Project_P1[i] <- metricsEvaluate("Project_P1")
+                cardsDisplay$Project_P2[i] <- metricsEvaluate("Project_P2")
+                cardsDisplay$Project_P3[i] <- metricsEvaluate("Project_P3")
+                cardsDisplay$Project_P4[i] <- metricsEvaluate("Project_P4")
             }
         }
         
@@ -215,10 +222,10 @@ myShiny <- shinyServer(function(input, output, session) {
         )
         
         #close the R session when Chrome closes
-        # session$onSessionEnded(function() {
-        #     stopApp()
-        #     q("no")
-        # })
+        session$onSessionEnded(function() {
+            stopApp()
+            q("no")
+        })
         
     })
 })
