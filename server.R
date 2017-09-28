@@ -117,6 +117,8 @@ myShiny <- shinyServer(function(input, output, session) {
         cardsDisplay$Project_P2 <- "n"
         cardsDisplay$Project_P3 <- "n"
         cardsDisplay$Project_P4 <- "n"
+        cardsDisplay$Task_P1 <- "n"
+        cardsDisplay$Task_P2 <- "n"
         
         metricsEvaluate <- function(x){
             if(any(unlist(cardsDisplay$labels[[i]][3]) %in% x)){
@@ -143,6 +145,8 @@ myShiny <- shinyServer(function(input, output, session) {
                 cardsDisplay$Project_P2[i] <- metricsEvaluate("Project_P2")
                 cardsDisplay$Project_P3[i] <- metricsEvaluate("Project_P3")
                 cardsDisplay$Project_P4[i] <- metricsEvaluate("Project_P4")
+                cardsDisplay$Task_P1[i] <- metricsEvaluate("Task_P1")
+                cardsDisplay$Task_P2[i] <- metricsEvaluate("Task_P2")
             }
         }
         
